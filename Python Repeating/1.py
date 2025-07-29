@@ -130,3 +130,18 @@ age = 20
 message = "My age is " + str(age)
 print(message)
 ##Перетворення типів
+name = "Tom"
+def print_name():
+    name = "Jack"
+    print(name)
+print_name()
+print("-----------------")
+def outer():
+    n = 5
+    def inner():
+        nonlocal n
+        n = 25
+        print(f"Inner: {n}")
+    inner()
+    print(f"Outer: {n}")
+outer()
