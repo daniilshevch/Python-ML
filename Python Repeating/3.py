@@ -61,33 +61,69 @@ def first_part():
     ]
     print()
     print_matrix(matrix)
+def second_part():
+    arr = [0,1,2,3,4,5,6,7,8]
+    arr1 = arr[:4]
+    print(arr1)
+    arr2 = arr[2:5]
+    print(arr2)
+    arr3 = arr[1:6:2]
+    print(arr3)
 
-arr = [0,1,2,3,4,5,6,7,8]
-arr1 = arr[:4]
-print(arr1)
-arr2 = arr[2:5]
-print(arr2)
-arr3 = arr[1:6:2]
-print(arr3)
+    arr4 = arr[:3]
+    arr5 = arr[3:]
+    print(arr4)
+    print(arr5)
+    ##arr[a:b:c] -> a - from what index(including), b - to what index(excluding), c - step
+    arr6 = arr[-3:]
+    arr7 = arr[:-3]
+    print(arr6)
+    print(arr7)
+    arr8 = arr[-6:-2]
+    print(arr8)
+    arr9 = arr[::-1]
+    print(arr9)
+    arr10 = arr[7:2:-1]
+    print(arr10)
+    arr11 = arr[3::-1]
+    print(arr11)
+    arr12 = arr[:4:-1]
+    print(arr12)
+    arr13 = arr[::-3]
+    print(arr13)
 
-arr4 = arr[:3]
-arr5 = arr[3:]
-print(arr4)
-print(arr5)
-##arr[a:b:c] -> a - from what index(including), b - to what index(excluding), c - step
-arr6 = arr[-3:]
-arr7 = arr[:-3]
-print(arr6)
-print(arr7)
-arr8 = arr[-6:-2]
-print(arr8)
-arr9 = arr[::-1]
-print(arr9)
-arr10 = arr[7:2:-1]
-print(arr10)
-arr11 = arr[3::-1]
-print(arr11)
-arr12 = arr[:4:-1]
-print(arr12)
-arr13 = arr[::-3]
-print(arr13)
+arr = [0,1,2,3,4,5,6,7]
+arr[0:3] = ["a", "b", "c", "d"]
+print(arr)
+arr[0:3] = [0,1]
+print(arr)
+del arr[0:5:2]
+print(arr)
+print(arr[1:16])
+names = ["Jack", "Mike"]
+print(len(names))
+names.append("Alice")
+print(names)
+names.insert(1, "Bill")
+print(names)
+
+names.extend(["Petro", "Poroshenko"])
+print(names)
+index_of_alice = names.index("Alice")
+print(index_of_alice)
+
+names.remove("Jack")
+print(names)
+print("Alice" in names)
+print("Hanna" in names)
+
+nums = [10,20,30,40,50]
+nums[1:4] = [11,22]
+print(nums)
+nums = [1,2,3,4,5,6,7,8,9]
+nums[::2] = [0,0,0,0,0]
+print(nums)
+
+print(nums.count(0))
+
+
