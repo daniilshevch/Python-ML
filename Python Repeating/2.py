@@ -2,6 +2,9 @@ from operator import truediv
 import abc
 import math
 
+from pyexpat import ExpatError
+
+
 def first_part():
     class Person:
         def __init__(self, name, age):
@@ -357,3 +360,58 @@ def fifteenth_part():
     func = multiply(4)
     func(5)
     func(6)
+def sixteenth_part():
+    string = "gfg"
+    try:
+        number = int(string)
+        print(f"The number is {number}")
+    except ValueError:
+        print("Invalid convertion")
+    finally:
+        print("Finally block")
+    print("End of program")
+
+    try:
+        number = 3 / 0
+        print(number)
+    finally:
+        print("Finally block number 2")
+
+    print("Last statement")
+
+# try:
+#     number = int(input("Enter a number: "))
+# except ValueError as ex:
+#     print(ex)
+# finally:
+#     print("Finally block")
+class PersonAgeException(Exception):
+    def __init__(self, age, min_age, max_age):
+        self.age = age
+        self.min_age = min_age
+        self.max_age = max_age
+    def __str__(self):
+        return f"Invalid data: {self.age}\n" \
+        f"Age must be between {self.min_age} and {self.max_age}"
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        if(age < 0 or age > 130):
+            raise PersonAgeException(age, 0, 130)
+        self.age = age
+    def print_person(self):
+        print(f"Name: {self.name}, Age: {self.age}")
+
+
+person = None
+correct = True
+try:
+    person = Person("John", -3)
+except Exception as ex:
+    correct = False
+    print(ex)
+finally:
+    print("Finally block")
+if person:
+    person.print_person()
+
