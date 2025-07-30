@@ -1,3 +1,7 @@
+from operator import truediv
+import abc
+import math
+
 def first_part():
     class Person:
         def __init__(self, name, age):
@@ -208,4 +212,80 @@ def ninth_part():
     child = Child()
     child.print_name_cls()
     child.print_name_static()
+def tenth_part():
+    class Number:
+        def __init__(self, value):
+            self.value = value
+        def __add__(self, other):
+            return Number(self.value + other.value)
+        def __str__(self):
+            return f"Value: {self.value}"
+        def __bool__(self):
+            if self.value != 0:
+                return True
+            else:
+                return False
+        def __isub__(self, other):
+            return Number(self.value - other)
 
+    one = Number(2)
+    two = Number(3)
+    three = one + two
+    print(three)
+    if(Number(4)):
+        print(Number(4))
+    if(Number(0)):
+        print(Number(0))
+    print("-----------------------")
+    counter = Number(5)
+    while(counter):
+        print(counter)
+        counter -= 1
+def eleventh_part():
+    class Person:
+        def __init__(self, name, age):
+            self.__name = name
+            self.__age = age
+        def __getitem__(self, prop):
+            if(prop == "name"):
+                return self.__name
+            elif(prop == "age"):
+                return self.__age
+            else:
+                return None
+    tom = Person("Tom", 39)
+    print(tom["name"])
+    print(tom["age"])
+    print(f"Id: {tom['id']}")
+
+class Shape(abc.ABC):
+    def __init__(self, x, y):
+        self.x_center = x
+        self.y_center = y
+    @abc.abstractmethod
+    def area(self): pass
+    def print_center(self):
+        print(f"Center: ({self.x_center};{self.y_center})")
+
+class Rectangle(Shape):
+    def __init__(self, x, y, width, height):
+        super().__init__(x,y)
+        self.width = width
+        self.height = height
+    def area(self):
+        return self.width * self.height
+class Circle(Shape):
+    def __init__(self, x, y, radius):
+        super().__init__(x,y)
+        self.radius = radius
+    def area(self):
+        return math.pi * self.radius * self.radius
+
+def print_area(shape):
+    print(f"Area: {shape.area()}")
+
+rect = Rectangle(4, 0,5, 9)
+circle = Circle(4, 9, 6)
+print_area(rect)
+print_area(circle)
+circle.print_center()
