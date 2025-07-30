@@ -142,16 +142,70 @@ def sixth_part():
     act(tim)
     act(jack)
     act(sam)
-class Test():
-    __type = "Test"
-    @staticmethod
-    def print_type():
-        print(Test.__type)
-    value = 100
-    def print(self):
-        print(self.value)
-test = Test()
-test.print()
-test.value = 18
-test.print()
-test.print_type()
+def seventh_part():
+    class Test():
+        __type = "Test"
+        @staticmethod
+        def print_type():
+            print(Test.__type)
+        value = 100
+        def print(self):
+            print(self.value)
+    test = Test()
+    test.print()
+    test.value = 18
+    test.print()
+    test.print_type()
+    class Trolleybus:
+        def __init__(self, index, model, route):
+            self.index = index
+            self.model = model
+            self.route = route
+        def __str__(self):
+            return f"Route {self.route}: {self.index} - {self.model}"
+    trolleybus122 = Trolleybus(122, "ElectronT19102", 30)
+    print(trolleybus122)
+def eight_part():
+    class Person:
+        type = "Person"
+        def __init__(self, name):
+            self.__name = name
+        @property
+        def name(self):
+            return self.__name
+        @classmethod
+        def from_dict(cls, data: dict):
+            return cls(data["name"])
+        @staticmethod
+        def print_type():
+            print(Person.type)
+    person = Person.from_dict({"name": "John"})
+    print(person.name)
+    person.print_type()
+def ninth_part():
+    class MyClass:
+        version = 1.0
+        @classmethod
+        def get_version_cls(cls):
+            return cls.version
+        @staticmethod
+        def get_version_static():
+            return MyClass.version
+
+
+    class Base:
+        name = "Base"
+        @classmethod
+        def print_name_cls(cls):
+            print(f"Name: {cls.name}")
+        @staticmethod
+        def print_name_static():
+            print(f"Name: {Base.name}")
+    class Child(Base):
+        name = "Child"
+    # print(MyClass.get_version_cls())
+    # print(MyClass.get_version_static())
+    child = Child()
+    child.print_name_cls()
+    child.print_name_static()
+
