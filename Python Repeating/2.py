@@ -257,35 +257,103 @@ def eleventh_part():
     print(tom["name"])
     print(tom["age"])
     print(f"Id: {tom['id']}")
+def twelfth_part():
+    class Shape(abc.ABC):
+        def __init__(self, x, y):
+            self.x_center = x
+            self.y_center = y
+        @abc.abstractmethod
+        def area(self): pass
+        def print_center(self):
+            print(f"Center: ({self.x_center};{self.y_center})")
 
-class Shape(abc.ABC):
-    def __init__(self, x, y):
-        self.x_center = x
-        self.y_center = y
-    @abc.abstractmethod
-    def area(self): pass
-    def print_center(self):
-        print(f"Center: ({self.x_center};{self.y_center})")
+    class Rectangle(Shape):
+        def __init__(self, x, y, width, height):
+            super().__init__(x,y)
+            self.width = width
+            self.height = height
+        def area(self):
+            return self.width * self.height
+    class Circle(Shape):
+        def __init__(self, x, y, radius):
+            super().__init__(x,y)
+            self.radius = radius
+        def area(self):
+            return math.pi * self.radius * self.radius
 
-class Rectangle(Shape):
-    def __init__(self, x, y, width, height):
-        super().__init__(x,y)
-        self.width = width
-        self.height = height
-    def area(self):
-        return self.width * self.height
-class Circle(Shape):
-    def __init__(self, x, y, radius):
-        super().__init__(x,y)
-        self.radius = radius
-    def area(self):
-        return math.pi * self.radius * self.radius
+    def print_area(shape):
+        print(f"Area: {shape.area()}")
 
-def print_area(shape):
-    print(f"Area: {shape.area()}")
+    rect = Rectangle(4, 0,5, 9)
+    circle = Circle(4, 9, 6)
+    print_area(rect)
+    print_area(circle)
+    circle.print_center()
+def thirteenth_part():
+    def select(input_func):
+        def output_func():
+            print("--------Start---------------")
+            input_func()
+            print("--------End---------------")
+        return output_func
 
-rect = Rectangle(4, 0,5, 9)
-circle = Circle(4, 9, 6)
-print_area(rect)
-print_area(circle)
-circle.print_center()
+    @select
+    def hello():
+        print("Hello")
+
+    hello()
+    print("$$$$$$$$$$$$$$$$$$$$$$")
+    def check(input_func):
+        def output_func(*args):
+            name = args[0]
+            age = args[1]
+            if(age < 0):
+                print("Invalid age")
+                return
+            input_func(*args)
+        return output_func
+    @check
+    def print_person(name, age):
+        print(f"Name: {name}, Age: {age}")
+
+    print_person("John", -18)
+def fourteenth_part():
+    def check(input_func):
+        def output_func(*args):
+            result = input_func(*args)
+            if(result < 0):
+                print("Result is negative")
+                return 0
+            else:
+                return result
+        return output_func
+
+    @check
+    def sum(a, b):
+        return a + b
+
+    print(sum(4,9))
+    print(sum(-2,-3))
+def fifteenth_part():
+    def outer():
+        n = 5
+        def inner():
+            nonlocal n
+            print(n)
+            n += 1
+        return inner
+
+    fn = outer()
+    fn()
+    fn()
+    fn()
+
+
+    def multiply(n):
+        def inner(m):
+            print(f"{n} * {m} = {n*m}")
+        return inner
+
+    func = multiply(4)
+    func(5)
+    func(6)
