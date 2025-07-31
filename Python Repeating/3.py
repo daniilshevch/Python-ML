@@ -236,11 +236,72 @@ def fifth_part():
     print_person(*person, "MonoBank")
     full_person = ["Peter", 42, "PrivatBank"]
     print_person(*full_person)
-    
+def sixth_part():
+    def print_range(input_range):
+        for i in input_range:
+            print(i, end = " ")
+        print()
+
+    print_range(range(5))
+    print_range(range(2, 10))
+    print_range(range(5, 16, 3))
+    print_range(range(15, 3, -2))
+
+    for i in range(1, 10):
+        for j in range(1, 10):
+            print(i * j, end = "\t")
+        print()
+    print(list(range(1, 15, 3)))
+    print(range(2, 10)[0])
+    print(range(2,10)[1])
+    print(range(2,10, 3)[1])
+    print("--------------")
+    print(len(range(2,10,3)))
+    print()
+    for i in range(len(range(3, 18, 4))):
+        print(range(3,18,4)[i])
+
+users = {1: "Tom", 2: "Bob", 3: "Sam"}
+objects = {1: True, 2: "text", 3: 3}
+users_list = dict([
+    ["Tom", "1234"],
+    ["Jack", "5678"],
+    ["Peter", "9101"]
+])
+print(users)
+print(objects)
+print(users_list)
 
 
+print(users_list["Tom"])
+print(objects[1])
+users_list["Miles"] = "8888"
+print(users_list["Miles"])
+try:
+    print(users_list["M"])
+except Exception as ex:
+    print("Exception")
+    print(ex)
+users_list["Miles"] = "4444"
+print(users_list["Miles"])
+print("Miles" in users_list)
+print("Karl" in users_list)
 
+karl = users_list.get("Karl")
+print(karl)
+miles = users_list.get("Miles")
+print(miles)
 
-
-
-
+for key in users_list:
+    print(f"{key} - {users_list[key]}")
+print("-------------------------------------")
+print(users_list.items())
+print(list(users_list.items()))
+for key, value in users_list.items():
+    print(f"{key} - {value}")
+print("###############################")
+for key in users_list.keys():
+    print(f"{key} - {users_list[key]}")
+print("###############################")
+for value in users_list.values():
+    print(value)
