@@ -305,36 +305,88 @@ def seventh_part():
     print("###############################")
     for value in users_list.values():
         print(value)
+def eighth_part():
+    users = {"Tom", "Bob", "Jack", "Tom", "Karl"}
+    print(users)
 
-users = {"Tom", "Bob", "Jack", "Tom", "Karl"}
-print(users)
+    numbers = [1,2,3,3,2,-9, 5,9,3, -3, -4, 2,5,6,-3, -5]
+    numbers_set = set(numbers)
+    print(numbers)
+    print(numbers_set)
+    numbers_set.add(100)
+    print(numbers_set)
+    for user in users:
+        print(user, end = " ")
+    print()
+    n1 = [1,4,8,4,5,2,3,4,5]
+    n2 = [1,5,9,11,4,8,5]
+    nums1 = {*n1}
+    nums2 = {*n2}
+    nums = nums1.union(nums2)
+    _nums = nums1 | nums2
+    __nums = n1 + n2
+    print(nums)
+    print(_nums)
+    print(__nums)
+    inter = nums1.intersection(nums2)
+    _inter = nums1 & nums2
+    print(inter)
+    print(_inter)
+    diff12 = nums1.difference(nums2)
+    diff21 = nums2.difference(nums1)
+    print(diff12)
+    print(diff21)
+    sym_diff = nums1.symmetric_difference(nums2)
+    print(sym_diff)
+def ninth_part():
+    numbers = [-3,-2,-1,0,1,2,3]
+    positive_numbers = []
+    for n in numbers:
+        if(n > 0):
+            positive_numbers.append(n)
+    print(positive_numbers)
+    positive_numbers2 = [n for n in numbers if n > 0]
+    print(positive_numbers2)
+    numbers10 = [n for n in range(10)]
+    print(numbers10)
+    squares = [n ** 2 for n in range(2,10,2)]
+    print(squares)
+    dictionary = {"red": "червоний", "blue":"блакитний", "green":"зелений"}
+    keys = [word for word in dictionary.keys()]
+    values = [word for word in dictionary.values()]
+    print(keys)
+    print(values)
+    class Person:
+        def __init__(self, name, age):
+            self.name = name
+            self.age = age
 
-numbers = [1,2,3,3,2,-9, 5,9,3, -3, -4, 2,5,6,-3, -5]
-numbers_set = set(numbers)
-print(numbers)
-print(numbers_set)
-numbers_set.add(100)
-print(numbers_set)
-for user in users:
-    print(user, end = " ")
-print()
-n1 = [1,4,8,4,5,2,3,4,5]
-n2 = [1,5,9,11,4,8,5]
-nums1 = {*n1}
-nums2 = {*n2}
-nums = nums1.union(nums2)
-_nums = nums1 | nums2
-__nums = n1 + n2
-print(nums)
-print(_nums)
-print(__nums)
-inter = nums1.intersection(nums2)
-_inter = nums1 & nums2
-print(inter)
-print(_inter)
-diff12 = nums1.difference(nums2)
-diff21 = nums2.difference(nums1)
-print(diff12)
-print(diff21)
-sym_diff = nums1.symmetric_difference(nums2)
-print(sym_diff)
+    people = (Person("Petro", 45), Person("Jack", 32), Person("Karl", 33))
+    names = [person.name for person in people if person.age > 32]
+    ages = [person.age for person in people]
+    print(names)
+    print(ages)
+
+    numbers = [1,5,8,3,2,5,4,3,8,9,1,0]
+    results = [n**2 if n % 2 == 0 else (-n**2) for n in numbers]
+    print(results)
+
+    first = [4,9,3,1,5,3,4,2,3]
+    second = ["a", "b", "d", "k", "p", "j", "u", "m", "d"]
+    pairs = zip(first, second)
+    pairs_all = [(one, two) for one in first for two in second] ##all combinations
+    for pair in pairs:
+        print(f"{pair[0]} - {pair[1]}")
+
+dictionary = {"a":1, "d":2, "k":5, "m":12}
+pairs = [f"({key} - {value})" for key, value in dictionary.items()]
+print(pairs)
+
+some_numbers = [x for x in range(1, 10)][2:6]
+print(some_numbers)
+squared = {x ** 2 for x in range(-7,4)}
+print(squared)
+
+paired_squares = {x:x**2 for x in range(0, 7)}
+print(paired_squares)
+
