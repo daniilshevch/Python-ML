@@ -186,15 +186,60 @@ def fourth_part():
         for item in obj:
             print(item, end = " ")
         print()
+def fifth_part():
+    tom = ("Tom", 23)
+    jack = ("Jack", 40)
+    print(tom)
+    print(jack)
+    data = ["Karl", 37, "Microsoft"]
+    karl = tuple(data)
+    print(data)
+    print(karl)
+    nums = (0,1,2,3,4,5,6,7,8)
+    print(nums)
+    nums2 = nums[4:0:-1]
+    print(nums2)
+    for n in nums:
+        print(n, end = " ")
+    print()
+    for i in range(len(nums)):
+        print(nums[i], end = " ")
+        ##nums[i] = 2 * nums[i]
+    print()
+    for i in range(4):
+        print([1,2,3,4][i])
+    person = ("Jack", 45, "New York", "Microsoft")
+    name, age, city, _ = person
+    print(name)
+    print(age)
+    print(city)
+    print(person[1:])
+    print(person[:2])
 
-tom = ("Tom", 23)
-jack = ("Jack", 40)
-print(tom)
-print(jack)
-data = ["Karl", 37, "Microsoft"]
-karl = tuple(data)
-print(data)
-print(karl)
+    def get_user():
+        name = "Tom"
+        age = 33
+        return name, age, "Microsoft"
+    user = get_user()
+    print(user)
+    print("-----------")
+    for prop in user:
+        print(prop)
+    print("----------")
+    for i in range(len(user)):
+        print(user[i])
+
+    def print_person(name, age, company):
+        print(f"Name: {name}, Age: {age}, Company: {company}")
+
+    person = ("Karl", 55)
+    print_person(*person, "MonoBank")
+    full_person = ["Peter", 42, "PrivatBank"]
+    print_person(*full_person)
+    
+
+
+
 
 
 
