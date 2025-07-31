@@ -260,48 +260,81 @@ def sixth_part():
     print()
     for i in range(len(range(3, 18, 4))):
         print(range(3,18,4)[i])
+def seventh_part():
+    users = {1: "Tom", 2: "Bob", 3: "Sam"}
+    objects = {1: True, 2: "text", 3: 3}
+    users_list = dict([
+        ["Tom", "1234"],
+        ["Jack", "5678"],
+        ["Peter", "9101"]
+    ])
+    print(users)
+    print(objects)
+    print(users_list)
 
-users = {1: "Tom", 2: "Bob", 3: "Sam"}
-objects = {1: True, 2: "text", 3: 3}
-users_list = dict([
-    ["Tom", "1234"],
-    ["Jack", "5678"],
-    ["Peter", "9101"]
-])
+
+    print(users_list["Tom"])
+    print(objects[1])
+    users_list["Miles"] = "8888"
+    print(users_list["Miles"])
+    try:
+        print(users_list["M"])
+    except Exception as ex:
+        print("Exception")
+        print(ex)
+    users_list["Miles"] = "4444"
+    print(users_list["Miles"])
+    print("Miles" in users_list)
+    print("Karl" in users_list)
+
+    karl = users_list.get("Karl")
+    print(karl)
+    miles = users_list.get("Miles")
+    print(miles)
+
+    for key in users_list:
+        print(f"{key} - {users_list[key]}")
+    print("-------------------------------------")
+    print(users_list.items())
+    print(list(users_list.items()))
+    for key, value in users_list.items():
+        print(f"{key} - {value}")
+    print("###############################")
+    for key in users_list.keys():
+        print(f"{key} - {users_list[key]}")
+    print("###############################")
+    for value in users_list.values():
+        print(value)
+
+users = {"Tom", "Bob", "Jack", "Tom", "Karl"}
 print(users)
-print(objects)
-print(users_list)
 
-
-print(users_list["Tom"])
-print(objects[1])
-users_list["Miles"] = "8888"
-print(users_list["Miles"])
-try:
-    print(users_list["M"])
-except Exception as ex:
-    print("Exception")
-    print(ex)
-users_list["Miles"] = "4444"
-print(users_list["Miles"])
-print("Miles" in users_list)
-print("Karl" in users_list)
-
-karl = users_list.get("Karl")
-print(karl)
-miles = users_list.get("Miles")
-print(miles)
-
-for key in users_list:
-    print(f"{key} - {users_list[key]}")
-print("-------------------------------------")
-print(users_list.items())
-print(list(users_list.items()))
-for key, value in users_list.items():
-    print(f"{key} - {value}")
-print("###############################")
-for key in users_list.keys():
-    print(f"{key} - {users_list[key]}")
-print("###############################")
-for value in users_list.values():
-    print(value)
+numbers = [1,2,3,3,2,-9, 5,9,3, -3, -4, 2,5,6,-3, -5]
+numbers_set = set(numbers)
+print(numbers)
+print(numbers_set)
+numbers_set.add(100)
+print(numbers_set)
+for user in users:
+    print(user, end = " ")
+print()
+n1 = [1,4,8,4,5,2,3,4,5]
+n2 = [1,5,9,11,4,8,5]
+nums1 = {*n1}
+nums2 = {*n2}
+nums = nums1.union(nums2)
+_nums = nums1 | nums2
+__nums = n1 + n2
+print(nums)
+print(_nums)
+print(__nums)
+inter = nums1.intersection(nums2)
+_inter = nums1 & nums2
+print(inter)
+print(_inter)
+diff12 = nums1.difference(nums2)
+diff21 = nums2.difference(nums1)
+print(diff12)
+print(diff21)
+sym_diff = nums1.symmetric_difference(nums2)
+print(sym_diff)
