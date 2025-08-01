@@ -438,18 +438,50 @@ def twelfth_part():
     print(name)
     print(company)
     print(_)
+def thirteenth_part():
+    num1 = 1
+    num2 = 2
+    num3 = 3
+    num4 = 4
+    num5 = 5
+    numbers = (num1, num2, num3)
+    print(numbers)
+    numbers = num1, num2, num3
+    print(numbers)
+    *numbers, = num1, num2, num3
+    print(numbers)
+    lst = [1,2,3,4,5]
+    first, second, *rest = lst
+    print(first)
+    print(second)
+    print(rest)
+    *begin, prev_last, last = lst
+    print(begin)
+    print(prev_last)
+    print(last)
+    first, *middle, last = num1, num2, num3, num4, num5
+    print(first)
+    print(middle)
+    print(last)
+def fourteenth_part():
+    first, _, third, *_, last = range(1, 100)
+    print(first)
+    print(third)
+    print(last)
 
-num1 = 1
-num2 = 2
-num3 = 3
-numbers = (num1, num2, num3)
-print(numbers)
-numbers = num1, num2, num3
-print(numbers)
-*numbers, = num1, num2, num3
-print(numbers)
-lst = [1,2,3,4,5]
-first, second, *rest = lst
-print(first)
-print(second)
-print(rest)
+    nums1 = [1,2,3]
+    nums2 = [4,5,6]
+    union = [*nums1, *nums2]
+    print(union)
+    nums1 = (7,8,9)
+    nums2 = (10,11,12)
+    print((*nums1, *nums2))
+    print([*nums1, *nums2])
+
+    dictionary1 = {"red":1, "blue":2}
+    dictionary2 = {"green":3, "yellow":4}
+    fake_dictionary = [*dictionary1, *dictionary2]
+    print(fake_dictionary)
+    dictionary = {**dictionary1, **dictionary2}
+    print(dictionary)
+    print(dictionary["green"])
