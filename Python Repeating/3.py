@@ -485,3 +485,58 @@ def fourteenth_part():
     dictionary = {**dictionary1, **dictionary2}
     print(dictionary)
     print(dictionary["green"])
+def fifteenth_part():
+    def fun(*args):
+        for i in range(len(args)):
+            print(f"Number {i}: {args[i]}")
+        print(args)
+    fun(1,7,12,14)
+    def sum(*args):
+        res = 0
+        for number in args:
+            res += number
+        return res
+    print(sum(4,12,3))
+    print(sum(5))
+    print(sum())
+    print(sum(1,3,14,12,3))
+
+    def func(**kwargs):
+        for key, value in kwargs.items():
+            print(f"{key}: {value}")
+        print(kwargs)
+    func(name="Daniil", age=20, city="Lviv")
+
+def sum(numbers):
+    res = 0
+    for n in numbers:
+        res += n
+    return res
+def sum2(*args):
+    res = 0
+    for n in args:
+        res += n
+    return res
+print(sum([4,1,3,4,5]))
+print(sum2(4,1,3,4,5))
+print(sum2(*(4,1,3,4,5)))
+
+def print_person(name, age, company):
+    print(f"Name: {name}, Age: {age}, Company: {company}")
+
+person = ["Karl", 44, "Microsoft"]
+person2 = ("Mike", 33, "Google")
+print_person(*person)
+print_person(*person2)
+
+person_dictionary = {"age":29, "company":"Amazon", "name":"Petro"}
+print_person(**person_dictionary)
+
+def sum3(first, second, *args):
+    res = first + second
+    for number in args:
+        res += number
+    return res
+print(sum3(1,2, 5, 8, 9))
+print(sum3(1,15))
+print(sum3(1,2,3))
