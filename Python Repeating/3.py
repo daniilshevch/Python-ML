@@ -377,16 +377,79 @@ def ninth_part():
     pairs_all = [(one, two) for one in first for two in second] ##all combinations
     for pair in pairs:
         print(f"{pair[0]} - {pair[1]}")
+def tenth_part():
+    dictionary = {"a":1, "d":2, "k":5, "m":12}
+    pairs = [f"({key} - {value})" for key, value in dictionary.items()]
+    print(pairs)
 
-dictionary = {"a":1, "d":2, "k":5, "m":12}
-pairs = [f"({key} - {value})" for key, value in dictionary.items()]
-print(pairs)
+    some_numbers = [x for x in range(1, 10)][2:6]
+    print(some_numbers)
+    squared = {x ** 2 for x in range(-7,4)}
+    print(squared)
 
-some_numbers = [x for x in range(1, 10)][2:6]
-print(some_numbers)
-squared = {x ** 2 for x in range(-7,4)}
-print(squared)
+    paired_squares = {x:x**2 for x in range(0, 7)}
+    print(paired_squares)
+def eleventh_part():
+    x, y = 1, 2
+    print(x)
+    print(y)
+    x, y = (3,4)
+    print(x)
+    print(y)
+    (x, y) = (5,6)
+    print(x)
+    print(y)
+    a = 100
+    b = 200
+    (a, b) = (b, a)
+    print(a)
+    print(b)
+    people = ["Tom", "Bob", "Sam"]
+    first, second, third = people
+    print(first)
+    print(second)
+    print(third)
+    dictionary = {"red":1, "blue":4, "green":7}
+    first, second, third = dictionary
+    print(first)
+    print(second)
+    print(third)
+    first, second, third = dictionary.values()
+    print(first)
+    print(second)
+    print(third)
+def twelfth_part():
+    people = [
+        ("Tom", 38, "Google"),
+        ("Jack", 45, "Microsoft"),
+        ("Peter", 29, "Amazon")
+    ]
+    for name, age, company in people:
+        print(f"Name: {name}, Age: {age}, Company: {company}")
+    for person in people:
+        print(person)
 
-paired_squares = {x:x**2 for x in range(0, 7)}
-print(paired_squares)
+    users = ["Petro", "Vasyl", "Misha"]
+    for index, name in enumerate(users):
+        print(f"Name: {name}, Index: {index}")
 
+    mike = ("Mike", 34, "Amazon")
+    name, _, company = mike
+    print(name)
+    print(company)
+    print(_)
+
+num1 = 1
+num2 = 2
+num3 = 3
+numbers = (num1, num2, num3)
+print(numbers)
+numbers = num1, num2, num3
+print(numbers)
+*numbers, = num1, num2, num3
+print(numbers)
+lst = [1,2,3,4,5]
+first, second, *rest = lst
+print(first)
+print(second)
+print(rest)
