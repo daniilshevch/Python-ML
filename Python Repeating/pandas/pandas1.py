@@ -121,25 +121,106 @@ def fifth_part():
     print(df[df["day"].isin(["Fri", "Sat", "Sun"])])
     print(df["day"])
     print(df.iloc[4])
+def sixth_part():
+    df = pd.read_csv(r"D:\ML-Course\03-Pandas\tips.csv")
+    print(df.iloc[2:6])
+    def last_four_symbols(num):
+        return str(num)[-4:]
+    def define_category(total_bill):
+        if(total_bill >= 20):
+            return "$$$"
+        elif(15 <= total_bill < 20):
+            return "$$"
+        else:
+            return "$"
+    print(last_four_symbols(342534534534))
+    df["Last four"] = df["CC Number"].apply(last_four_symbols)
+    print(df)
+    print("------------------------")
+    df["category"] = df["total_bill"].apply(define_category)
+    print(df)
+    print("------------------")
+    doubler = lambda n: n * 2
+    df["double_total_bill"] = df["total_bill"].apply(doubler)
+    print(df)
 
-df = pd.read_csv(r"D:\ML-Course\03-Pandas\tips.csv")
-print(df.iloc[2:6])
-def last_four_symbols(num):
-    return str(num)[-4:]
-def define_category(total_bill):
-    if(total_bill >= 20):
-        return "$$$"
-    elif(15 <= total_bill < 20):
-        return "$$"
-    else:
-        return "$"
-print(last_four_symbols(342534534534))
-df["Last four"] = df["CC Number"].apply(last_four_symbols)
-print(df)
-print("------------------------")
-df["category"] = df["total_bill"].apply(define_category)
-print(df)
-print("------------------")
-doubler = lambda n: n * 2
-df["double_total_bill"] = df["total_bill"].apply(doubler)
-print(df)
+    def tip_percentage(total_bill, tip):
+        return (tip / total_bill) * 100
+    def quality_of_tip(total_bill, tip):
+        percentage = tip / total_bill
+        if(percentage > 0.2):
+            return "Excellent"
+        elif(percentage > 0.15):
+            return "Good"
+        else:
+            return "General"
+    df["tip_percentage"] = df[["total_bill", "tip"]].apply(lambda df: tip_percentage(df["total_bill"], df["tip"]), axis=1)
+    df["quality_of_tip"] = df[["total_bill", "tip"]].apply(lambda df: quality_of_tip(df["total_bill"], df["tip"]), axis=1)
+    df["quality"] = np.vectorize(quality_of_tip)(df["total_bill"], df["tip"])
+    print(df)
+def seventh_part():
+    df = pd.read_csv(r"D:\ML-Course\03-Pandas\tips.csv")
+    print(df.describe())
+    print(df.describe().transpose())
+    print(df)
+    print(df.sort_values(by="total_bill", ascending=False))
+    print(df.sort_values(by=["tip", "total_bill"], ascending=[True, False]))
+    print("-----------")
+    print(df["total_bill"].max())
+    print(df["total_bill"].idxmax())
+    print(df.iloc[df["total_bill"].idxmax()])
+    print(df["sex"].value_counts())
+    print(df["day"].unique())
+    print(df["day"].nunique())
+    print(df["day"].value_counts())
+    print("##############################")
+    print(df)
+    ##df["sex"] = df["sex"].replace(["Female", "Male"], ["F", "M"])
+    print(df)
+    my_map = {"Female": "F", "Male": "M"}
+    df["sex"] = df["sex"].map(my_map)
+    print(df)
+
+    print(df.duplicated())
+    simple_df = pd.DataFrame([1,2,2,2], ["a", "b", "c", "d"], columns=["letter"])
+    print(simple_df)
+    print(simple_df.duplicated())
+    simple_df = simple_df.drop_duplicates()
+    print(simple_df)
+    ##pd.set_option('display.max_rows', None)
+    print(df["total_bill"].between(18, 22, inclusive="both"))
+    print(df[df["total_bill"].between(18, 22, inclusive="both")])
+    print(df.nlargest(5, columns=["total_bill"]))
+    print(df.sort_values(by="total_bill", ascending=False).iloc[0:5])
+    print(df.sample(n=5))
+def eighth_part():
+    print(np.nan)
+    print(pd.NA)
+    df = pd.read_csv(r"D:\ML-Course\03-Pandas\movie_scores.csv")
+    print(df)
+    print(df.isnull())
+    print(df.isna())
+    print(df[df["pre_movie_score"].notnull()])
+    print(df[df["pre_movie_score"].notnull()]["post_movie_score"])
+    pre_movie_score_is_null = df["pre_movie_score"].isna()
+    print(pre_movie_score_is_null)
+    first_name_is_not_null = df["first_name"].notna()
+    print(first_name_is_not_null)
+    print(df[pre_movie_score_is_null & first_name_is_not_null])
+    print("--------")
+    print(df)
+    print(df.dropna())
+    print(df.dropna(thresh=4))
+    print(df.dropna(axis=1))
+    print(df.dropna(subset=["last_name"]))
+    ##df["pre_movie_score"] = df["pre_movie_score"].fillna(0)
+    ##df["pre_movie_score"] = df["pre_movie_score"].fillna(df["pre_movie_score"].mean())
+    df.loc[df["pre_movie_score"].isna(), "pre_movie_score"] = df["pre_movie_score"].mean()
+    print(df)
+
+    airline_tix = {"first":100, "business":np.nan, "economy-plus":50, "economy": 30}
+    ser = pd.Series(airline_tix)
+    print(ser)
+    print(ser.interpolate())
+    ser.loc["business"] = 70
+    print(ser)
