@@ -105,3 +105,41 @@ def fourth_part():
     print(one_row)
     df.loc["xxxxxxx"] = one_row
     print(df)
+def fifth_part():
+    df = pd.read_csv(r"D:\ML-Course\03-Pandas\tips.csv")
+    print(df.head())
+    print(df["total_bill"])
+    print(df["total_bill"] > 40)
+    print(df[df["total_bill"] > 40])
+    print("-----------")
+    print(df[df["tip"] > 3.5])
+    print("---------------")
+    pd.set_option('display.width', None)
+    print(df[(df["total_bill"] > 30) & (df["sex"] == "Male")])
+    ##pd.set_option('display.max_rows', 300)
+    print(df[(df["tip"] < 2) | (df["tip"] > 5)])
+    print(df[df["day"].isin(["Fri", "Sat", "Sun"])])
+    print(df["day"])
+    print(df.iloc[4])
+
+df = pd.read_csv(r"D:\ML-Course\03-Pandas\tips.csv")
+print(df.iloc[2:6])
+def last_four_symbols(num):
+    return str(num)[-4:]
+def define_category(total_bill):
+    if(total_bill >= 20):
+        return "$$$"
+    elif(15 <= total_bill < 20):
+        return "$$"
+    else:
+        return "$"
+print(last_four_symbols(342534534534))
+df["Last four"] = df["CC Number"].apply(last_four_symbols)
+print(df)
+print("------------------------")
+df["category"] = df["total_bill"].apply(define_category)
+print(df)
+print("------------------")
+doubler = lambda n: n * 2
+df["double_total_bill"] = df["total_bill"].apply(doubler)
+print(df)
