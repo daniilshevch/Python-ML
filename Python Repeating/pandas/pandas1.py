@@ -1,5 +1,8 @@
 import numpy as np
 import pandas as pd
+from numpy import number
+
+
 def first_part():
     index = ["Lviv", "Odesa", "Ternopil"]
     data = [0.9, 1, 0.25]
@@ -223,4 +226,17 @@ def eighth_part():
     print(ser)
     print(ser.interpolate())
     ser.loc["business"] = 70
-    print(ser)
+    print(ser)\
+
+df = pd.read_csv(r"D:\ML-Course\03-Pandas\mpg.csv")
+print(df)
+print(df["model_year"].unique())
+print(df["model_year"].value_counts())
+print(df.groupby("model_year").mean(numeric_only=True))
+print(df.groupby(["model_year", "cylinders"]).mean(numeric_only=True)["mpg"])
+print(df.groupby(["model_year", "cylinders"]).describe())
+year_cyl = df.groupby(["model_year", "cylinders"]).mean(numeric_only=True)
+print(year_cyl)
+print(year_cyl.loc[[70, 82]])
+print(year_cyl.loc[(70,4)])
+
