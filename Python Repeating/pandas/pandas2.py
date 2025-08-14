@@ -70,37 +70,89 @@ def third_part():
     print(df)
     print(df.drop("total_bill", axis=1))
     print(df.shape)
+def fourth_part():
+    pd.set_option("display.width", None)
+    df = pd.read_csv(r"D:\ML-Course\03-Pandas\tips.csv")
+    print(df)
+    df = df.set_index("Payment ID")
+    print(df)
+    # df.reset_index(inplace=True)
+    # print(df)
+    # df = df.set_index("Payer Name")
+    # print(df)
+    print(df.iloc[2])
+    print(df.iloc[3])
+    print(df)
+    print(df.loc["Sun5260"])
+    print("-------------")
+    print(df)
+    df.reset_index(inplace=True)
+    print(df.iloc[2:16:3])
+    df.set_index("Payment ID", inplace=True)
+    print("----------")
+    print(df.loc[["Sun4458", "Sun6820", "Sun6686"]])
+    print(df.drop("Sun4458"))
+    first_row = df.iloc[0]
+    second_row = df.iloc[1]
+    third_row = df.iloc[2]
+    print(first_row)
+    print(type(first_row))
+    df = pd.concat([df, pd.DataFrame([first_row, second_row])])
+    df.loc["XXXX"] = third_row
+    df.loc["YYYY"] = pd.Series(third_row)
+    print(df)
+def fifth_part():
+    df = pd.read_csv(r"D:\ML-Course\03-Pandas\tips.csv")
+    print(df["tip"] > 3)
+    print(type(df["tip"] > 2))
+    print(df[df["tip"] > 3])
+    pd.set_option("display.max_rows", None)
+    pd.set_option("display.width", None)
+    print(df["total_bill"] > 40)
+    print(df[df["total_bill"] > 40])
+    print("----------------------------")
+    print(df[ (df["total_bill"] > 40) & (df["tip"] > 5) ])
+    print(df.head())
+    print(df[(df["day"] == "Sun") | (df["day"] == "Sat") | (df["day"] == "Fri")])
+    print("---------------")
+    print(df[df["day"].isin(["Fri", "Sat"])])
+def sixth_part():
+    def get_last_four_digits(number):
+        return int(str(number)[-4:])
+    def define_category(total_bill):
+        if total_bill > 30:
+            return "Expensive"
+        elif total_bill > 20:
+            return "Average"
+        else:
+            return "Cheap"
 
-pd.set_option("display.width", None)
+    df = pd.read_csv(r"D:\ML-Course\03-Pandas\tips.csv")
+    print(df.head())
+    df["last four"] = df["CC Number"].apply(get_last_four_digits)
+    print(df)
+    print(df["total_bill"])
+    df["category"] = df["total_bill"].apply(define_category)
+    pd.set_option("display.max_rows", None)
+    print(df)
+
 df = pd.read_csv(r"D:\ML-Course\03-Pandas\tips.csv")
+print(df.head())
+df["double_bill"] = df["total_bill"].apply(lambda total_bill: total_bill * 2)
 print(df)
-df = df.set_index("Payment ID")
+def quality_of_tip(total_bill, tip):
+    if tip / total_bill > 0.25:
+        return "Excellent"
+    else:
+        return "General"
+df["quality_of_tip"] = df[["total_bill", "tip"]].apply(lambda row: quality_of_tip(row["total_bill"], row["tip"]), axis = 1)
+pd.set_option("display.max_rows", None)
+df["quality_of_tip2"] = np.vectorize(quality_of_tip)(df["total_bill"], df["tip"])
 print(df)
-# df.reset_index(inplace=True)
-# print(df)
-# df = df.set_index("Payer Name")
-# print(df)
-print(df.iloc[2])
-print(df.iloc[3])
-print(df)
-print(df.loc["Sun5260"])
-print("-------------")
-print(df)
-df.reset_index(inplace=True)
-print(df.iloc[2:16:3])
-df.set_index("Payment ID", inplace=True)
-print("----------")
-print(df.loc[["Sun4458", "Sun6820", "Sun6686"]])
-print(df.drop("Sun4458"))
-first_row = df.iloc[0]
-second_row = df.iloc[1]
-third_row = df.iloc[2]
-print(first_row)
-print(type(first_row))
-df = pd.concat([df, pd.DataFrame([first_row, second_row])])
-df.loc["XXXX"] = third_row
-df.loc["YYYY"] = pd.Series(third_row)
-print(df)
+
+
+
+
 
 
 
