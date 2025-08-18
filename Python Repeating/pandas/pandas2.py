@@ -135,24 +135,81 @@ def sixth_part():
     df["category"] = df["total_bill"].apply(define_category)
     pd.set_option("display.max_rows", None)
     print(df)
+def seventh_part():
+    df = pd.read_csv(r"D:\ML-Course\03-Pandas\tips.csv")
+    print(df.head())
+    df["double_bill"] = df["total_bill"].apply(lambda total_bill: total_bill * 2)
+    print(df)
+    def quality_of_tip(total_bill, tip):
+        if tip / total_bill > 0.25:
+            return "Excellent"
+        else:
+            return "General"
+    df["quality_of_tip"] = df[["total_bill", "tip"]].apply(lambda row: quality_of_tip(row["total_bill"], row["tip"]), axis = 1)
+    pd.set_option("display.max_rows", None)
+    df["quality_of_tip2"] = np.vectorize(quality_of_tip)(df["total_bill"], df["tip"])
+    print(df)
+def ninth_part():
+    df = pd.read_csv(r"D:\ML-Course\03-Pandas\tips.csv")
+    print(df.describe())
+    print(df.sort_values("total_bill"))
+    print(df.sort_values("total_bill", ascending=False))
+    print(df.sort_values(["tip", "total_bill"], ascending=[True, False]))
+    pd.set_option("display.max_rows", None)
+    print(df["total_bill"])
+    print(df["total_bill"].max())
+    print(df["total_bill"].idxmax())
+    print(df.iloc[170])
+    print(df.corr(numeric_only=True))
+    print(df["sex"].value_counts())
+    print(df["day"])
+    print(df["day"].unique())
+    print(df["day"].nunique())
+    ##df["sex"] = df["sex"].replace(["Female", "Male"], ["F", "M"])
+    print(df)
+    my_map = {"Female": "F", "Male": "M"}
+    print(df["sex"].map(my_map))
+    print(df.duplicated())
+    simple_df = pd.DataFrame(data=[1,2,2,2], index=["a","b","c","d"], columns = ["value"])
+    print(simple_df)
+    print(simple_df.duplicated())
+    print(simple_df.drop_duplicates())
+    print(simple_df["value"])
+    print(type(simple_df["value"]))
+    print(df["total_bill"].between(10,20, inclusive="both"))
+    print(df[df["total_bill"].between(10,20, inclusive="both")])
+    print(df.nlargest(10, "tip"))
+    print("----------------------------------------")
+    print(df.sort_values("tip", ascending=False).iloc[0:10])
+    print(df.sample(6))
 
-df = pd.read_csv(r"D:\ML-Course\03-Pandas\tips.csv")
-print(df.head())
-df["double_bill"] = df["total_bill"].apply(lambda total_bill: total_bill * 2)
+df = pd.read_csv(r"D:\ML-Course\03-Pandas\movie_scores.csv")
+my_var = np.nan
+print(my_var == np.nan)
+print(my_var is np.nan)
 print(df)
-def quality_of_tip(total_bill, tip):
-    if tip / total_bill > 0.25:
-        return "Excellent"
-    else:
-        return "General"
-df["quality_of_tip"] = df[["total_bill", "tip"]].apply(lambda row: quality_of_tip(row["total_bill"], row["tip"]), axis = 1)
-pd.set_option("display.max_rows", None)
-df["quality_of_tip2"] = np.vectorize(quality_of_tip)(df["total_bill"], df["tip"])
+print(df.isnull())
+print(df["pre_movie_score"].notnull())
+print(df[df["pre_movie_score"].notnull()])
+print(df[ (df["pre_movie_score"].isnull()) & (df["first_name"].notnull()) ])
+print("-----------------------")
+print(df)
+print(df.dropna())
+print(df.dropna(thresh=4))
+print(df.dropna(axis = 1))
+print(df.dropna(subset=["last_name"]))
+print(df.fillna("New Value"))
+df["pre_movie_score"] = df["pre_movie_score"].fillna(0)
+df["post_movie_score"] = df["post_movie_score"].fillna(-1)
+print(df)
+df = pd.read_csv(r"D:\ML-Course\03-Pandas\movie_scores.csv")
+df["pre_movie_score"] = df["pre_movie_score"].fillna(df["pre_movie_score"].mean())
 print(df)
 
-
-
-
-
-
-
+airline_tix = {"first": 100, "business": np.nan,"economy-plus":50, "economy": 30}
+ser = pd.Series(airline_tix)
+print(ser)
+print(ser.interpolate())
+print(ser["first"])
+print(ser.loc["first"])
+print(ser.iloc[0])
