@@ -22,10 +22,38 @@ def first_part():
     two.columns.values[0] = "XXX"
     two.columns.values[1] = "YYY"
     print(two)
+def second_part():
+    registrations = pd.DataFrame({"reg_id":[1,2,3,4], "name": ["Andrew", "Bob", "Claire", "David"]})
+    logins = pd.DataFrame({"log_id": [1,2,3,4], "name": ["Xavier", "Andrew", "Yolanda", "Bob"]})
+    print(registrations)
+    print(logins)
+    mg = pd.merge(registrations, logins, how="inner", on = "name")
+    print(mg)
+    md = pd.merge(left = registrations, right = logins, how="left", on = "name")
+    print(md)
+    md = pd.merge(registrations, logins, how = "right", on = "name")
+    print(md)
+    md = pd.merge(registrations, logins, how = "outer", on = "name")
+    print(md)
+def third_part():
+    registrations = pd.DataFrame({"reg_id":[1,2,3,4], "name": ["Andrew", "Bob", "Claire", "David"]})
+    logins = pd.DataFrame({"log_id": [1,2,3,4], "name": ["Xavier", "Andrew", "Yolanda", "Bob"]})
+    registrations.set_index("name", inplace=True)
+    print(registrations)
+    print(logins)
+    df = pd.merge(registrations, logins, left_index=True, right_on="name", how="inner")
+    print(df)
+    registrations.reset_index(inplace=True)
+    registrations.columns = ["reg_name", "reg_id"]
+    print(registrations)
+    print(logins)
+    df = pd.merge(registrations, logins, left_on="reg_name", right_on="name", how="inner")
+    print(df.drop("reg_name", axis = 1))
+    registrations.columns = ["name", "id"]
+    print(registrations)
+    logins.columns = ["id", "name"]
+    print(logins)
+    df = pd.merge(registrations, logins, on="name", how="inner", suffixes = ("_reg", "_log"))
+    print(df)
 
-registrations = pd.DataFrame({"reg_id":[1,2,3,4], "name": ["Andrew", "Bob", "Claire", "David"]})
-logins = pd.DataFrame({"log_id": [1,2,3,4], "name": ["Xavier", "Andrew", "Yolanda", "Bob"]})
-print(registrations)
-print(logins)
-mg = pd.merge(registrations, logins, how="inner", on = "name")
-print(mg)
+
