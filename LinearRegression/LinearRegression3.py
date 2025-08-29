@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from joblib import dump, load
 import seaborn as sns
 from pandas.core.internals.construction import rec_array_to_mgr
 df = pd.read_csv(r"D:\ML-Course\08-Linear-Regression-Models\Advertising.csv")
@@ -54,4 +55,44 @@ print(df["sales"].mean())
 print(mean_absolute_error(y_test, test_predictions))
 print(mean_squared_error(y_test, test_predictions))
 print(np.sqrt(mean_squared_error(y_test, test_predictions)))
+test_residuals = y_test - test_predictions
+print(test_residuals)
+##sns.scatterplot(x=y_test, y=test_residuals)
+##plt.axhline(y=0,color="red",ls="--")
+##plt.show()
+##sns.distplot(test_residuals, bins=25)
+##plt.show()
 
+final_model = LinearRegression()
+final_model.fit(X, y)
+print(final_model.coef_)
+print(final_model.intercept_)
+
+y_pred = final_model.predict(X)
+
+def print_graphs():
+    fig, axes = plt.subplots(nrows = 1, ncols = 3, figsize = (16, 6), dpi = 300)
+    axes[0].plot(df["TV"], df["sales"], 'o', color = "blue")
+    axes[0].plot(df["TV"], y_pred, 'o', color = "red")
+    axes[0].set_ylabel("Sales")
+    axes[0].set_title("TV Spend")
+
+    axes[1].plot(df["radio"], df["sales"], 'o', color = "blue")
+    axes[1].plot(df["radio"], y_pred, 'o', color = "red")
+    axes[1].set_ylabel("Sales")
+    axes[1].set_title("Radio Spend")
+
+    axes[2].plot(df["newspaper"], df["sales"], 'o', color = "blue")
+    axes[2].plot(df["newspaper"], y_pred, 'o', color = "red")
+    axes[2].set_ylabel("Sales")
+    axes[2].set_title("Newspaper Spend")
+
+    plt.show()
+##print_graphs()
+dump(final_model, "final_model.joblib")
+loaded_model = load("final_model.joblib")
+print(loaded_model.coef_)
+
+campaign = [[149, 22, 12]]
+results = loaded_model.predict(campaign)
+print(results)
